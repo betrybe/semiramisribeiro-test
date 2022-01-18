@@ -16,5 +16,6 @@ var usersRouter = require('../controllers/authController');
 app.get('/', (req,res) => {res.send("OK")});
 
 require('../controllers/authController')(app);
+require('../controllers/recipesController')(app);
 
 app.listen(3000);

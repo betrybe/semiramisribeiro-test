@@ -1,6 +1,7 @@
 const express = require('express');
 
 const User = require('../models/users');
+const Recipes = require('../models/recipes');
 const jwt = require('jsonwebtoken');
 
 const authConfig = require('../config/auth');
@@ -14,7 +15,10 @@ const { required } = require('joi');
 
 const router = express.Router();
 
-//function generateToken
+function generateToken(params = {}) {
+    return 
+
+}
 
 
 router.post('/users', async (req, res) => {
@@ -38,6 +42,8 @@ router.post('/users', async (req, res) => {
                 return res.status(409).send({message: 'Email already registered'});
         } else if(role == 'user'){
             const user = await User.create(req.body);
+            return res.status(201).send({user});
+        } else {
             return res.status(201).send({user});
         }
 
@@ -68,15 +74,50 @@ router.post('/login', async (req, res) => {
             return res.status(401).send({message: 'Incorrect username or password'});
         } else {
 
-           const token = jwt.sign({id: user.id}, authConfig.secret, {    
+
+            const token =  jwt.sign({id: user.id}, authConfig.secret, {    
                 expiresIn: 86400,
             });
 
-            return res.status(201).send ({ token});
+            return res.status(201).send ({ token });
         }
 
 
         
+   } catch(err){
+           
+    }
+});
+
+router.get('/recipes', async (req, res) => {
+
+    try{
+        const recipe = await Recipes.find();
+
+        return res.status(201).send({recipe});
+       
+       
+        
+
+
+        
+   } catch(err){
+           
+    }
+});
+
+router.get('/recipes/:id', async (req, res) => {
+
+    try{
+        console.log(req.params);
+        const recipe = await Recipes.findById( req.params.id);
+        if(recipe!= null) return res.status(201).send({recipe});
+        else {
+            return res.status(404).send({"message" : "recipe not found"});
+        }
+
+        
+
    } catch(err){
            
     }

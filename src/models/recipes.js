@@ -8,7 +8,6 @@ name: {
 
 ingredients: {
     type: String,
-    unique: true,
     required: true,
 },
 preparation:{
@@ -26,5 +25,5 @@ preparation:{
 
 });
 
-const User = mongoose.model('User', Userschema);
-module.exports = User;  
+const Recipes = mongoose.model('Recipes', RecipesSchema);
+module.exports = Recipes;  
