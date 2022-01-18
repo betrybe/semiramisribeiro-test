@@ -7,23 +7,18 @@ const authConfig = require('../config/auth');
 module.exports = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
-    console.log(authHeader);
-
-   
-   // const parts = authHeader.split(' ');
-
-   // const [scheme, token] = parts;
-
+    if(!authHeader || typeof authHeader == undefined || authHeader == null){
+        return res.status(401).send({"message": "missing auth token"});
+    }
 
 
     jwt.verify(authHeader , authConfig.secret, (err, decoded) => {
         if(err){
-            console.log(err)
             return res.status(401).send({"message": "jwt malformed"});
         }
 
         req.userId = decoded.id;
-
+        
         return next();
     })
 

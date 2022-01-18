@@ -14,14 +14,17 @@ preparation:{
     type: String,
     required: true,
 },
- imageUrl: {
+ image: {
      type: String,
     
  },
 
- /*authorId: {
-     type: int
- } */
+ user: {
+     type: mongoose.Schema.Types.ObjectId,
+     ref:'User',
+     require: true,
+
+ } 
 
 });
 

@@ -27,6 +27,10 @@ router.post('/users', async (req, res) => {
         
         const {email, name, password, role} = req.body;
 
+        if(name == ' '){
+            return res.status(400).send({message: 'Invalid entries. Try again.'});
+        } 
+
         if(!name || !email || !password){
             return res.status(400).send({message: 'Invalid entries. Try again.'});
         }
@@ -94,7 +98,7 @@ router.get('/recipes', async (req, res) => {
     try{
         const recipe = await Recipes.find();
 
-        return res.status(201).send({recipe});
+        return res.status(200).send({recipe});
        
        
         
@@ -111,7 +115,7 @@ router.get('/recipes/:id', async (req, res) => {
     try{
         console.log(req.params);
         const recipe = await Recipes.findById( req.params.id);
-        if(recipe!= null) return res.status(201).send({recipe});
+        if(recipe!= null) return res.status(200).send({recipe});
         else {
             return res.status(404).send({"message" : "recipe not found"});
         }
