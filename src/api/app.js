@@ -1,4 +1,6 @@
+const bodyParser = require('body-parser');
 const express = require('express');
+const req = require('express/lib/request');
 
 const app = express();
 
