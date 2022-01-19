@@ -15,11 +15,6 @@ const { required } = require('joi');
 
 const router = express.Router();
 
-function generateToken(params = {}) {
-    return 
-
-}
-
 
 router.post('/users', async (req, res) => {
 
@@ -27,23 +22,23 @@ router.post('/users', async (req, res) => {
         
         const {email, name, password, role} = req.body;
 
-        if(name == ' '){
-            return res.status(400).send({message: 'Invalid entries. Try again.'});
+        if(typeof name == undefined || name == null || name == '' ){
+            return res.status(400).send({"message": 'Invalid entries. Try again.'});
         } 
 
         if(!name || !email || !password){
-            return res.status(400).send({message: 'Invalid entries. Try again.'});
+            return res.status(400).send({"message": 'Invalid entries. Try again.'});
         }
 
         
         if(!validator.validate(email)){
-            return res.status(400).send({message: 'Invalid entries. Try again.'});
+            return res.status(400).send({"message": 'Invalid entries. Try again.'});
         }
 
         const existingEmail = await User.findOne({ email });
     
         if (existingEmail) {
-                return res.status(409).send({message: 'Email already registered'});
+                return res.status(409).send({"message": 'Email already registered'});
         } else if(role == 'user'){
             const user = await User.create(req.body);
             return res.status(201).send({user});

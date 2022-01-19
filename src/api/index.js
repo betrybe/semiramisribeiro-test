@@ -1,4 +1,4 @@
-const bodyParser = require('body-parser');
+/*const bodyParser = require('body-parser');
 const express = require('express');
 const req = require('express/lib/request');
 const path = require('path');
@@ -20,4 +20,4 @@ app.get('/', (req,res) => {res.send("OK")});
 require('../controllers/authController')(app);
 require('../controllers/recipesController')(app);
 
-app.listen(3000);
+app.listen(3000);*/

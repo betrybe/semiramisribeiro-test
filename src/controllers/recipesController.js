@@ -28,7 +28,7 @@ router.post('/recipes', async (req, res) => {
         
         const {name, ingredients, preparation} = req.body;
 
-        if(!req.body.name  || typeof req.body.name == undefined || req.body.name == null){
+        if(!name  || typeof name == undefined || name == null){
             return res.status(400).send({message: 'Invalid entries. Try again.'});
         }
 
