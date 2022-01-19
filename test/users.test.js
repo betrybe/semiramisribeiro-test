@@ -1,4 +1,12 @@
 const frisby = require('frisby');
+
+exports.setup = function() {
+  frisby.globalSetup({
+    timeout: 120000000
+  });
+};
+
+
 const { MongoClient } = require('mongodb');
 
 const mongoDbUrl = 'mongodb://localhost:27017/Cookmaster';

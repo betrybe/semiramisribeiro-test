@@ -1,11 +1,10 @@
-const app = require('./app');
-const bodyParser = require('body-parser');
+/*const bodyParser = require('body-parser');
 const express = require('express');
 const req = require('express/lib/request');
-
-const PORT = 3000;
-
 const path = require('path');
+
+const app = express();
+
 
 
 
@@ -21,6 +20,4 @@ app.get('/', (req,res) => {res.send("OK")});
 require('../controllers/authController')(app);
 require('../controllers/recipesController')(app);
 
-app.listen(PORT, () => console.log(`conectado na porta ${PORT}`));
-
-
+app.listen(3000);*/
